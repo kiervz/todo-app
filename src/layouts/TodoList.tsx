@@ -6,7 +6,8 @@ import {
   onSnapshot,
   doc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
+  orderBy
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Todo } from '../components/todo/types';
@@ -15,7 +16,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState([] as any);
 
   useEffect(() => {
-    const q = query(collection(db, "todos"));
+    const q = query(collection(db, "todos"), orderBy('id'));
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray: any[] = [];
 
@@ -45,7 +46,11 @@ const TodoList = () => {
 
   return (
     <>
-      {todos.map((todo: Todo, i: number) =>
+      {
+        todos.length === 0 ?
+        <div className='py-2 text-center'>No Data Found.</div>
+        :
+        todos.map((todo: Todo, i: number) =>
         <TodoItem
           todo={todo}
           key={i}

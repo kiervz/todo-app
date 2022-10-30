@@ -12,6 +12,7 @@ const CreateTodo = () => {
 
     if (title !== "") {
       await addDoc(collection(db, "todos"), {
+        id: +new Date(),
         title,
         completed: false
       });
@@ -24,8 +25,9 @@ const CreateTodo = () => {
     <form className='flex justify-around' onSubmit={handleSubmit}>
       <Input
         type="text"
+        placeholder='Title'
         value={title}
-        className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-sm
+        className="break-words mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-sm
         text-sm shadow-sm placeholder-slate-400
         focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
         onChange={(e) => setTitle(e.target.value)}
