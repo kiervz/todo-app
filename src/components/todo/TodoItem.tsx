@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Input } from '../common/input';
 import { Button } from '../common/button';
 import { TodoItem as TodoItemProps } from './types/TodoItem';
-import { FaEdit, FaTrashAlt, FaCheck, FaSave } from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaRegSquare, FaCheckSquare, FaSave } from 'react-icons/fa';
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleComplete, handleDelete, handleEdit }) => {
   const [newTitle, setNewTitle] = useState(todo.title);
@@ -44,12 +44,11 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleComplete, handleDelete,
   return (
     <div className={`flex justify-between mt-2 p-2 ${isEdit ? 'bg-gray-100' : 'bg-white hover:bg-gray-100'}`}>
       <Button
-          type='button'
-          className='border-none outline-none cursor-pointer text-teal-500 p-1 mr-2
-          hover:bg-teal-500 hover:text-white ease-in duration-300 rounded-full'
-          btnIcon={<FaCheck />}
-          onClick={handlerToggleComplete}
-        />
+        type='button'
+        className='border-none outline-none cursor-pointer text-teal-500 p-1 mr-2 ease-in duration-400'
+        btnIcon={todo.completed ? <FaCheckSquare /> : <FaRegSquare />}
+        onClick={handlerToggleComplete}
+      />
       { isEdit ?
         <Input
           type='text'
@@ -81,7 +80,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, toggleComplete, handleDelete,
           <Button
             type='button'
             isDisabled={todo.completed}
-            className={editSaveClass() + ' text-blue-500'}
+            className={editSaveClass() + ` ${todo.completed ? 'text-gray-500' : 'text-blue-500'}`}
             btnIcon={<FaEdit />}
             onClick={onHandleEdit}
           /> }
