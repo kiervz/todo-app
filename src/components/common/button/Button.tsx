@@ -1,17 +1,7 @@
 import React from 'react';
+import { Button as ButtonProps } from './types';
 
-interface Props {
-  type?: "button" | "submit" | "reset",
-  className: string,
-  onSubmit: React.FormEventHandler,
-  onClick: React.MouseEventHandler<HTMLButtonElement>,
-  btnText: string,
-  isDisabled: boolean,
-  isLoading: boolean
-  btnIcon: string
-};
-
-export const Button: React.FC<Props> = ({type = 'button', className, onSubmit, onClick, btnText = '', isDisabled = false, isLoading, btnIcon = null}) => {
+export const Button: React.FC<ButtonProps> = ({type = 'button', className, onSubmit, onClick, btnText = '', isDisabled = false, isLoading, btnIcon = null}) => {
   return (
     <button
       type={type}
@@ -20,7 +10,7 @@ export const Button: React.FC<Props> = ({type = 'button', className, onSubmit, o
       onClick={onClick}
       disabled={isDisabled || isLoading}
     >
-      { btnIcon && !isLoading && (<i className={btnIcon}></i>)}
+      { btnIcon && !isLoading && (typeof btnIcon === 'string' ? <i className={btnIcon}></i> : btnIcon)}
       { isLoading ? (<>Loading...</>) : btnText}
     </button>
   );

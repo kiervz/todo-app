@@ -3,7 +3,9 @@ import React from 'react';
 const Navbar = () => {
   return (
     <div className='flex justify-center m-4'>
-      <p className='text-teal-600 text-3xl font-bold'>TODO APP</p>
+      <p className='text-teal-600 font-bold text-2xl'>
+        TODO APP
+      </p>
     </div>
   );
 };
