@@ -1,7 +1,13 @@
+import CreateTodo from "./layouts/CreateTodo"
+import Navbar from "./layouts/Navbar"
+import TodoList from "./layouts/TodoList"
+
 const App = () => {
   return (
-    <div className="bg-green-600 h-screen">
-      <p className="text-white text-3xl">Hello, React + Typescript + Tailwind CSS</p>
+    <div className="h-screen">
+      <Navbar />
+      <CreateTodo />
+      <TodoList />
     </div>
   )
 }
